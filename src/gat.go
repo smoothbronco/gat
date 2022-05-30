@@ -34,6 +34,7 @@ func main() {
 				text := scanner.Text()
 				if *b && text == "" {
 					fmt.Println()
+					i--
 					continue
 				}
 				if *b || *n {
