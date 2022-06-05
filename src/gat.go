@@ -41,6 +41,7 @@ func main() {
 					fmt.Printf("%v: %s\n", i, text)
 					continue
 				}
+				fmt.Println(text)
 			}
 		}
 	}
