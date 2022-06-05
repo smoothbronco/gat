@@ -11,6 +11,7 @@ import (
 func main() {
 	var n = flag.Bool("n", false, "通し番号を付与する")
 	var b = flag.Bool("b", false, "空白行を除いて通し番号を付与する")
+	var e = flag.Bool("e", false, "行末に$マークを付与する")
 	flag.Parse()
 	var (
 		files     = flag.Args()
@@ -33,15 +34,18 @@ func main() {
 			for ; scanner.Scan(); i++ {
 				text := scanner.Text()
 				if *b && text == "" {
-					fmt.Println()
+					fmt.Print()
 					i--
-					continue
+				} else if *b || *n {
+					fmt.Printf("%v: %s", i, text)
+				} else {
+					fmt.Print(text)
 				}
-				if *b || *n {
-					fmt.Printf("%v: %s\n", i, text)
-					continue
+				if *e {
+					fmt.Println("$")
+				} else {
+					fmt.Println()
 				}
-				fmt.Println(text)
 			}
 		}
 	}
